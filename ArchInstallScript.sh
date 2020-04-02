@@ -194,7 +194,7 @@ echo -e "Server = ${InstallMirror}\n$(cat /etc/pacman.d/mirrorlist)" > /etc/pacm
 echo "Mirror changed to UK based one"
 
 ### Install base system ###
-pacstrap -i /mnt base base-devel --noconfirm
+pacstrap -i /mnt base linux linux-firmware --noconfirm
 
 genfstab -U /mnt > /mnt/etc/fstab
 
@@ -263,30 +263,36 @@ echo '${InstallUsername} ALL=(ALL:ALL) ALL' >> /etc/sudoers
 EOF
 
 ###Install display server###
+function InstallXORG {
 arch-chroot /mnt /bin/bash <<EOF
 pacman -S xorg-server --noconfirm
 pacman -S xf86-video-intel --noconfirm
 pacman -S xf86-input-synaptics --noconfirm
 EOF
+}
 
 ###Install Desktop Eviroment###
 if [ ${InstallDesktopEnviroment} == "plasma" ]
 then
+  InstallXORG
   arch-chroot /mnt /bin/bash <<EOF
   pacman -S plasma --noconfirm
 EOF
 elif [ ${InstallDesktopEnviroment} == "gnome" ]
 then
+  InstallXORG
   arch-chroot /mnt /bin/bash <<EOF
   pacman -S gnome --noconfirm
 EOF
 elif [ ${InstallDesktopEnviroment} == "cinnamon" ]
 then
+  InstallXORG
   arch-chroot /mnt /bin/bash <<EOF
   pacman -S cinnamon --noconfirm
 EOF
 elif [ ${InstallDesktopEnviroment} == "xfce" ]
 then
+  InstallXORG
   arch-chroot /mnt /bin/bash <<EOF
   pacman -S xfce4 --noconfirm
 EOF
