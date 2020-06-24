@@ -1,5 +1,5 @@
 # Arch-Install-Script #
-Automated install of Arch Linux via bash script for EPQ 2018
+Automated install of Arch Linux via bash script for originally for EPQ 2018
 
 ## How to use ##
 * Get the latest Arch Linux ISO from here: https://www.archlinux.org/download/ and flash it to a bootable device however you see fit (e.g. DD or rufus)
