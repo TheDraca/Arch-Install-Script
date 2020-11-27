@@ -1,5 +1,4 @@
 #!/bin/bash
-#Third Draft//FINAL VERSION!#
 loadkeys uk
 echo "######Arch Linux Install Script ~ EPQ 2017######"
 echo "Testing for internet connection"
@@ -250,9 +249,9 @@ systemctl enable NetworkManager
 EOF
 
 
-###Install sudo###
+###Install sudo and other bits I like###
 arch-chroot /mnt /bin/bash <<EOF
-pacman -S sudo bash-completion ntfs-3g --noconfirm
+pacman -S sudo bash-completion ntfs-3g nano git wget --noconfirm
 EOF
 
 ###Create user using preset info###
@@ -317,11 +316,10 @@ else
   echo "No Dekstop Manager installed"
 fi
 
-###Enable Multilib + Change interfaces names###
+###Enable Multilibs###
 arch-chroot /mnt /bin/bash <<EOF
 sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 pacman -Sy
-ln -s /dev/null /etc/udev/rules.d/80-net-setup-link.rules
 EOF
 
 ###Unmount System###
