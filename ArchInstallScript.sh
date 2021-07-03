@@ -210,6 +210,7 @@ export LANG=en_GB.UTF-8
 (echo '7'; echo '8'; echo '1') | tzselect
 ln -sf /usr/share/zoneinfo/Europe/London  /etc/localtime
 hwclock --systohc --utc
+locale-gen
 
 EOF
 
