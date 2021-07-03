@@ -256,7 +256,7 @@ EOF
 
 ###Install sudo and other bits I like###
 arch-chroot /mnt /bin/bash <<EOF
-pacman -S sudo bash-completion ntfs-3g nano git wget --noconfirm
+pacman -S sudo bash-completion nano git wget gparted ntfs-3g exfatprogs gpart --noconfirm
 EOF
 
 ###Create user using preset info###
