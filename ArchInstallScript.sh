@@ -36,6 +36,9 @@ else
   InstallBIOSWarning
 fi
 
+## Ensure time is correct##
+timedatectl set-ntp true
+
 ### Select which drive to install to! ###
 
 echo "Which Drive are we installing to?"
@@ -214,6 +217,7 @@ EOF
 ### Set hostname + root password of users choice ###
 arch-chroot /mnt /bin/bash <<EOF
 echo ${InstallHostname} > /etc/hostname
+echo "127.0.1.1 ${InstallHostname}.local ${InstallHostname}" >> /etc/hosts
 echo "root:${InstallRootPassword}" | chpasswd
 EOF
 
